@@ -22,4 +22,5 @@ html, body {
   flex-direction: row;
   width: fit-content;
   height: fit-content;
+  align-items: flex-start;
 }
