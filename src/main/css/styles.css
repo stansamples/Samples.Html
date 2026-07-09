@@ -12,7 +12,7 @@ html, body {
   background-color: transparent;
 }
 
-.row {
+.boxFlex {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
