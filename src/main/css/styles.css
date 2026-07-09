@@ -10,6 +10,8 @@ html, body {
   padding: 0px;
   border: none;
   background-color: transparent;
+  scrollbar-width: none;
+  scrollbar-color: #000000ff #00000000;
 }
 
 .boxFlex {
