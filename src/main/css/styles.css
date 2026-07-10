@@ -14,29 +14,55 @@
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
-html, body {
+html {
   width: 100%;
   height: 100%;
   margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
   font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.0;
+  letter-spacing: 0px;
+  text-align: start;
+  visibility: visible;
 }
 
-.box {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   border: none;
+  border-radius: 0;
   background-color: transparent;
   scrollbar-width: none;
-  scrollbar-color: #000000ff #00000000;
+  scrollbar-color: #00000000 #00000000;
 }
 
-.boxFlex {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
+.Box {
+  margin: 0;
+  padding: 0;
   border: none;
+  border-radius: 0;
   background-color: transparent;
+  scrollbar-width: auto;
+  scrollbar-color: #000000ff #00000000;
+  box-sizing: border-box;
+}
+
+.FlexBox {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  scrollbar-width: auto;
+  scrollbar-color: #000000ff #00000000;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   width: fit-content;
