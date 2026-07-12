@@ -38,7 +38,6 @@ function renderColors(colors) {
 
 ColorsSwitch.addEventListener('click', () => {
     const colors = _colors === Colors.Dark ? Colors.Light : Colors.Dark
-    renderColors(colors)
     onStateChange({ colors: colors })
 })
 
@@ -86,13 +85,17 @@ function onStateChange({ selected = _selected, colors = _colors }) {
     }
 }
 
-window.addEventListener('hashchange', () => {
+function onHashChange() {
     const params = new URLSearchParams(location.hash.slice(1))
     const selected = screenOf(params.get('selected'))
     const colors = colorsOf(params.get('colors'))
     onStateChange({ selected: selected, colors: colors })
+}
+
+window.addEventListener('hashchange', () => {
+    onHashChange()
 })
 
 //
 
-onStateChange({ selected: Screen.Foo, colors: Colors.Dark })
+onHashChange()
