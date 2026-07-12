@@ -72,6 +72,8 @@ StartItems.addEventListener('click', (event) => {
     }
 })
 
+//
+
 function onStateChange({ selected = _selected, colors = _colors }) {
     if (_selected !== selected) {
         renderSelected(selected)
@@ -85,17 +87,15 @@ function onStateChange({ selected = _selected, colors = _colors }) {
     }
 }
 
-function onHashChange() {
+function onPopState() {
     const params = new URLSearchParams(location.hash.slice(1))
     const selected = screenOf(params.get('selected'))
     const colors = colorsOf(params.get('colors'))
     onStateChange({ selected: selected, colors: colors })
 }
 
-window.addEventListener('hashchange', () => {
-    onHashChange()
-})
+window.addEventListener('popstate', onPopState)
 
 //
 
-onHashChange()
+onPopState()
