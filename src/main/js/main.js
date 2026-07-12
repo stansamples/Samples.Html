@@ -37,10 +37,10 @@ StartItems.addEventListener('click', (event) => {
 //
 
 async function renderMainScreen(selected) {
-  const url = `./src/main/md/${selected}.md`
+  const url = `./src/main/html/${selected}.html`
   const res = await fetch(url)
   const text = await res.text()
-  MainScreen.innerHTML = marked.parse(text)
+  MainScreen.innerHTML = text
 }
 
 //
