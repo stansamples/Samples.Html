@@ -6,6 +6,7 @@
   --colors-background: #202020ff;
   --colors-focused: #282828ff;
   --colors-pressed: #303030ff;
+  --colors-selected: #383838ff;
   --colors-text: #d0d0d0ff;
 }
 
@@ -13,6 +14,7 @@
   --colors-background: #d0d0d0ff;
   --colors-focused: #c8c8c8ff;
   --colors-pressed: #c0c0c0ff;
+  --colors-selected: #b8b8b8ff;
   --colors-text: #202020ff;
 }
 
@@ -101,6 +103,7 @@ body {
 .StartItem {
   padding: 8px 16px;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 .StartItem:hover {
@@ -112,12 +115,14 @@ body {
 }
 
 .StartItem.selected {
+  background-color: var(--colors-selected);
   color: var(--colors-primary);
 }
 
 .Colors {
   padding: 8px 16px;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 .Colors:hover {
