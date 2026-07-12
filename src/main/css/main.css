@@ -1,5 +1,6 @@
 :root {
   --colors-primary: #1e88e5ff;
+  --colors-text: var(--colors-foreground);
 }
 
 [data-colors="dark"] {
@@ -7,7 +8,8 @@
   --colors-focused: #282828ff;
   --colors-pressed: #303030ff;
   --colors-selected: #383838ff;
-  --colors-text: #d0d0d0ff;
+  --colors-foreground: #d0d0d0ff;
+  --colors-border: #606060ff;
 }
 
 [data-colors="light"] {
@@ -15,7 +17,8 @@
   --colors-focused: #c8c8c8ff;
   --colors-pressed: #c0c0c0ff;
   --colors-selected: #b8b8b8ff;
-  --colors-text: #202020ff;
+  --colors-foreground: #202020ff;
+  --colors-border: #808080ff;
 }
 
 @font-face {
