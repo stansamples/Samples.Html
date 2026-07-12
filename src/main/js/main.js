@@ -1,4 +1,4 @@
-let _selected = 'foo'
+let _selected = undefined
 let _colors = 'dark'
 
 const Colors = document.getElementById('Colors')
@@ -20,32 +20,41 @@ Colors.addEventListener('click', (event) => {
 
 //
 
-function renderStartItems() {
-  StartItems.querySelectorAll('.StartItem').forEach((it) => {
-    it.classList.toggle('selected', it.dataset.id === _selected)
-  })
+function renderStartItems(selected) {
+    StartItems.querySelectorAll('.StartItem').forEach((it) => {
+        it.classList.toggle('selected', it.dataset.id === selected)
+    })
+}
+
+async function renderMainScreen(selected) {
+    const url = `./src/main/html/${selected}.html`
+    const res = await fetch(url)
+    const text = await res.text()
+    MainScreen.innerHTML = text
+    MainScreen.scrollTop = 0
+}
+
+function renderSelected(selected) {
+    _selected = selected
+    location.hash = selected
+    renderStartItems(selected)
+    renderMainScreen(selected)
 }
 
 StartItems.addEventListener('click', (event) => {
     const item = event.target.closest('.StartItem')
     console.log('clicked', item.dataset.id)
-    _selected = item.dataset.id
-    renderStartItems()
-    renderMainScreen(item.dataset.id)
+    renderSelected(item.dataset.id)
+})
+
+window.addEventListener('hashchange', () => {
+    const selected = location.hash.slice(1) || 'foo'
+    if (_selected !== selected) {
+        renderSelected(selected)
+    }
 })
 
 //
 
-async function renderMainScreen(selected) {
-  const url = `./src/main/html/${selected}.html`
-  const res = await fetch(url)
-  const text = await res.text()
-  MainScreen.innerHTML = text
-  MainScreen.scrollTop = 0
-}
-
-//
-
 renderColors(_colors)
-renderStartItems()
-renderMainScreen(_selected)
+renderSelected(location.hash.slice(1) || 'foo')
