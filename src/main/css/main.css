@@ -69,3 +69,16 @@ body {
   height: fit-content;
   align-items: flex-start;
 }
+
+.StartItem {
+  cursor: pointer;
+  background-color: #ff8080ff;
+}
+
+.StartItem:hover {
+  background-color: #ff4040ff;
+}
+
+.StartItem:active {
+  background-color: #ff2020ff;
+}
