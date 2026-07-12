@@ -82,13 +82,18 @@ body {
 .StartItem {
   padding: 8px 16px;
   cursor: pointer;
-  background-color: #ff8080ff;
+  background-color: #303030ff;
+  color: #d0d0d0ff;
 }
 
 .StartItem:hover {
-  background-color: #ff4040ff;
+  background-color: #404040ff;
 }
 
 .StartItem:active {
-  background-color: #ff2020ff;
+  background-color: #505050ff;
+}
+
+.StartItem.selected {
+  color: #82aaffff;
 }
