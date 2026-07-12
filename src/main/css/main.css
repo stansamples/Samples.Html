@@ -1,3 +1,11 @@
+[data-colors="dark"] {
+  --background: #202020ff;
+}
+
+[data-colors="light"] {
+  --background: #d0d0d0ff;
+}
+
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
@@ -38,7 +46,7 @@ body {
   padding: 0;
   border: none;
   border-radius: 0;
-  background-color: #202020ff;
+  background-color: var(--background);
   scrollbar-width: none;
   scrollbar-color: #00000000 #00000000;
 }
@@ -96,4 +104,19 @@ body {
 
 .StartItem.selected {
   color: #82aaffff;
+}
+
+.Colors {
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #303030ff;
+  color: #d0d0d0ff;
+}
+
+.Colors:hover {
+  background-color: #404040ff;
+}
+
+.Colors:active {
+  background-color: #505050ff;
 }
