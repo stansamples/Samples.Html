@@ -39,7 +39,7 @@ function renderColors(colors) {
 ColorsSwitch.addEventListener('click', () => {
     const colors = _colors === Colors.Dark ? Colors.Light : Colors.Dark
     renderColors(colors)
-    history.replaceState(null, '', getState({ colors: colors }))
+    onStateChange({ colors: colors })
 })
 
 //
@@ -69,17 +69,14 @@ StartItems.addEventListener('click', (event) => {
     if (!item) return
     if (_selected !== item.dataset.id) {
         history.pushState(null, '', getState({ selected: item.dataset.id }))
-        renderSelected(item.dataset.id)
+        onStateChange({ selected: item.dataset.id })
     }
 })
 
-function onHashChange() {
-    const params = new URLSearchParams(location.hash.slice(1))
-    const selected = screenOf(params.get('selected'))
+function onStateChange({ selected = _selected, colors = _colors }) {
     if (_selected !== selected) {
         renderSelected(selected)
     }
-    const colors = colorsOf(params.get('colors'))
     if (_colors !== colors) {
         renderColors(colors)
     }
@@ -90,9 +87,12 @@ function onHashChange() {
 }
 
 window.addEventListener('hashchange', () => {
-    onHashChange()
+    const params = new URLSearchParams(location.hash.slice(1))
+    const selected = screenOf(params.get('selected'))
+    const colors = colorsOf(params.get('colors'))
+    onStateChange({ selected: selected, colors: colors })
 })
 
 //
 
-onHashChange()
+onStateChange({ selected: Screen.Foo, colors: Colors.Dark })
