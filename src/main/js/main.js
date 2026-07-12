@@ -1,21 +1,11 @@
 let _selected = 'StartItems:foo'
 let _colors = 'dark'
 
-const StartItems = document.getElementById('StartItems')
 const Colors = document.getElementById('Colors')
+const StartItems = document.getElementById('StartItems')
+const MainScreen = document.getElementById('MainScreen')
 
-function renderStartItems() {
-  StartItems.querySelectorAll('.StartItem').forEach((it) => {
-    it.classList.toggle('selected', it.dataset.id === _selected)
-  })
-}
-
-StartItems.addEventListener('click', (event) => {
-    const item = event.target.closest('.StartItem')
-    console.log('clicked', item.dataset.id)
-    _selected = item.dataset.id
-    renderStartItems()
-})
+//
 
 function renderColors(colors) {
     Colors.textContent = colors
@@ -28,5 +18,30 @@ Colors.addEventListener('click', (event) => {
     renderColors(newColors)
 })
 
-renderStartItems()
+//
+
+function renderStartItems() {
+  StartItems.querySelectorAll('.StartItem').forEach((it) => {
+    it.classList.toggle('selected', it.dataset.id === _selected)
+  })
+}
+
+StartItems.addEventListener('click', (event) => {
+    const item = event.target.closest('.StartItem')
+    console.log('clicked', item.dataset.id)
+    _selected = item.dataset.id
+    renderStartItems()
+    renderMainScreen(_selected)
+})
+
+//
+
+function renderMainScreen(selected) {
+  MainScreen.textContent = selected
+}
+
+//
+
 renderColors(_colors)
+renderStartItems()
+renderMainScreen(_selected)
