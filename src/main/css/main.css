@@ -38,7 +38,7 @@ body {
   padding: 0;
   border: none;
   border-radius: 0;
-  background-color: transparent;
+  background-color: #202020ff;
   scrollbar-width: none;
   scrollbar-color: #00000000 #00000000;
 }
@@ -70,7 +70,17 @@ body {
   align-items: flex-start;
 }
 
+.StartItems {
+ padding: 8px 16px;
+ flex-direction: column;
+ min-height: 0;
+ gap: 8px;
+ overflow-y: auto;
+ justify-content: flex-start;
+}
+
 .StartItem {
+  padding: 8px 16px;
   cursor: pointer;
   background-color: #ff8080ff;
 }
