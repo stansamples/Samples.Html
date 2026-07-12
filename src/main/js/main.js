@@ -1,4 +1,4 @@
-let _selected = 'StartItems:foo'
+let _selected = 'foo'
 let _colors = 'dark'
 
 const Colors = document.getElementById('Colors')
@@ -31,13 +31,15 @@ StartItems.addEventListener('click', (event) => {
     console.log('clicked', item.dataset.id)
     _selected = item.dataset.id
     renderStartItems()
-    renderMainScreen(_selected)
+    renderMainScreen(item.dataset.id)
 })
 
 //
 
-function renderMainScreen(selected) {
-  MainScreen.textContent = selected
+async function renderMainScreen(selected) {
+  const url = `./src/main/res/${selected}.txt`
+  const res = await fetch(url)
+  MainScreen.textContent = await res.text()
 }
 
 //
