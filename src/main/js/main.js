@@ -67,14 +67,13 @@ StartItems.addEventListener('click', (event) => {
     const item = event.target.closest('.StartItem')
     if (!item) return
     if (_selected !== item.dataset.id) {
-        history.pushState(null, '', getState({ selected: item.dataset.id }))
-        onStateChange({ selected: item.dataset.id })
+        onStateChange({ selected: item.dataset.id }, true)
     }
 })
 
 //
 
-function onStateChange({ selected = _selected, colors = _colors }) {
+function onStateChange({ selected = _selected, colors = _colors }, needsToPush = false) {
     if (_selected !== selected) {
         renderSelected(selected)
     }
@@ -83,7 +82,11 @@ function onStateChange({ selected = _selected, colors = _colors }) {
     }
     const expected = getState({ selected: selected, colors: colors })
     if (location.hash !== expected) {
-        history.replaceState(null, '', expected)
+        if (needsToPush) {
+            history.pushState(null, '', expected)
+        } else {
+            history.replaceState(null, '', expected)
+        }
     }
 }
 
