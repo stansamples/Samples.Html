@@ -1,9 +1,19 @@
+const Screen = Object.freeze({
+  Foo: 'foo',
+  Bar: 'bar',
+  Baz: 'baz',
+});
+
 let _selected = undefined
 let _colors = 'dark'
 
 const Colors = document.getElementById('Colors')
 const StartItems = document.getElementById('StartItems')
 const MainScreen = document.getElementById('MainScreen')
+
+function screenOf(name) {
+    return Object.values(Screen).includes(name) ? name : Screen.Foo;
+}
 
 //
 
@@ -12,7 +22,7 @@ function renderColors(colors) {
     document.documentElement.setAttribute('data-colors', colors)
 }
 
-Colors.addEventListener('click', (event) => {
+Colors.addEventListener('click', () => {
     const newColors = _colors === 'dark' ? 'light' : 'dark'
     _colors = newColors
     renderColors(newColors)
@@ -43,12 +53,14 @@ function renderSelected(selected) {
 
 StartItems.addEventListener('click', (event) => {
     const item = event.target.closest('.StartItem')
-    console.log('clicked', item.dataset.id)
-    renderSelected(item.dataset.id)
+    if (!item) return
+    if (_selected !== item.dataset.id) {
+        renderSelected(item.dataset.id)
+    }
 })
 
 window.addEventListener('hashchange', () => {
-    const selected = location.hash.slice(1) || 'foo'
+    const selected = screenOf(location.hash.slice(1))
     if (_selected !== selected) {
         renderSelected(selected)
     }
@@ -57,4 +69,4 @@ window.addEventListener('hashchange', () => {
 //
 
 renderColors(_colors)
-renderSelected(location.hash.slice(1) || 'foo')
+renderSelected(screenOf(location.hash.slice(1)))

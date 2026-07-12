@@ -120,6 +120,7 @@ body {
 .StartItem.selected {
   background-color: var(--colors-selected);
   color: var(--colors-primary);
+  cursor: auto;
 }
 
 .Colors {
