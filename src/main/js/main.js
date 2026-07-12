@@ -46,7 +46,6 @@ async function renderMainScreen(selected) {
 
 function renderSelected(selected) {
     _selected = selected
-    location.hash = selected
     renderStartItems(selected)
     renderMainScreen(selected)
 }
@@ -55,18 +54,26 @@ StartItems.addEventListener('click', (event) => {
     const item = event.target.closest('.StartItem')
     if (!item) return
     if (_selected !== item.dataset.id) {
+        history.pushState(null, '', `#${item.dataset.id}`)
         renderSelected(item.dataset.id)
     }
 })
 
-window.addEventListener('hashchange', () => {
-    const selected = screenOf(location.hash.slice(1))
+function onHashChange(raw) {
+    const selected = screenOf(raw)
     if (_selected !== selected) {
         renderSelected(selected)
     }
+    if (raw !== selected) {
+        history.replaceState(null, '', `#${selected}`)
+    }
+}
+
+window.addEventListener('hashchange', () => {
+    onHashChange(location.hash.slice(1))
 })
 
 //
 
 renderColors(_colors)
-renderSelected(screenOf(location.hash.slice(1)))
+onHashChange(location.hash.slice(1))
