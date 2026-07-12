@@ -17,10 +17,16 @@ StartItems.addEventListener('click', (event) => {
     renderStartItems()
 })
 
+function renderColors(colors) {
+    Colors.textContent = colors
+    document.documentElement.setAttribute('data-colors', colors)
+}
+
 Colors.addEventListener('click', (event) => {
     const newColors = _colors === 'dark' ? 'light' : 'dark'
     _colors = newColors
-    document.documentElement.setAttribute('data-colors', newColors)
+    renderColors(newColors)
 })
 
 renderStartItems()
+renderColors(_colors)

@@ -1,9 +1,19 @@
+:root {
+  --colors-primary: #1e88e5ff;
+}
+
 [data-colors="dark"] {
-  --background: #202020ff;
+  --colors-background: #202020ff;
+  --colors-focused: #282828ff;
+  --colors-pressed: #303030ff;
+  --colors-text: #d0d0d0ff;
 }
 
 [data-colors="light"] {
-  --background: #d0d0d0ff;
+  --colors-background: #d0d0d0ff;
+  --colors-focused: #c8c8c8ff;
+  --colors-pressed: #c0c0c0ff;
+  --colors-text: #202020ff;
 }
 
 @font-face {
@@ -46,7 +56,8 @@ body {
   padding: 0;
   border: none;
   border-radius: 0;
-  background-color: var(--background);
+  background-color: var(--colors-background);
+  color: var(--colors-text);
   scrollbar-width: none;
   scrollbar-color: #00000000 #00000000;
 }
@@ -90,33 +101,29 @@ body {
 .StartItem {
   padding: 8px 16px;
   cursor: pointer;
-  background-color: #303030ff;
-  color: #d0d0d0ff;
 }
 
 .StartItem:hover {
-  background-color: #404040ff;
+  background-color: var(--colors-focused);
 }
 
 .StartItem:active {
-  background-color: #505050ff;
+  background-color: var(--colors-pressed);
 }
 
 .StartItem.selected {
-  color: #82aaffff;
+  color: var(--colors-primary);
 }
 
 .Colors {
   padding: 8px 16px;
   cursor: pointer;
-  background-color: #303030ff;
-  color: #d0d0d0ff;
 }
 
 .Colors:hover {
-  background-color: #404040ff;
+  background-color: var(--colors-focused);
 }
 
 .Colors:active {
-  background-color: #505050ff;
+  background-color: var(--colors-pressed);
 }
