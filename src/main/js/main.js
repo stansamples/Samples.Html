@@ -4,28 +4,42 @@ const Screen = Object.freeze({
   Baz: 'baz',
 });
 
-let _selected = undefined
-let _colors = 'dark'
+const Colors = Object.freeze({
+  Dark: 'dark',
+  Light: 'light',
+});
 
-const Colors = document.getElementById('Colors')
+let _selected = undefined
+let _colors = undefined
+
+const ColorsSwitch = document.getElementById('ColorsSwitch')
 const StartItems = document.getElementById('StartItems')
 const MainScreen = document.getElementById('MainScreen')
+
+function getState({ selected = _selected, colors = _colors } = {}) {
+    return `#selected=${selected}&colors=${colors}`
+}
 
 function screenOf(name) {
     return Object.values(Screen).includes(name) ? name : Screen.Foo;
 }
 
+function colorsOf(name) {
+    return Object.values(Colors).includes(name) ? name : Colors.Dark;
+}
+
 //
 
 function renderColors(colors) {
-    Colors.textContent = colors
+    _colors = colors
+    ColorsSwitch.textContent = colors
     document.documentElement.setAttribute('data-colors', colors)
 }
 
-Colors.addEventListener('click', () => {
-    const newColors = _colors === 'dark' ? 'light' : 'dark'
-    _colors = newColors
-    renderColors(newColors)
+ColorsSwitch.addEventListener('click', () => {
+    const colors = _colors === Colors.Dark ? Colors.Light : Colors.Dark
+    renderColors(colors)
+    history.replaceState(null, '', getState({ colors: colors }))
 })
 
 //
@@ -54,26 +68,31 @@ StartItems.addEventListener('click', (event) => {
     const item = event.target.closest('.StartItem')
     if (!item) return
     if (_selected !== item.dataset.id) {
-        history.pushState(null, '', `#${item.dataset.id}`)
+        history.pushState(null, '', getState({ selected: item.dataset.id }))
         renderSelected(item.dataset.id)
     }
 })
 
-function onHashChange(raw) {
-    const selected = screenOf(raw)
+function onHashChange() {
+    const params = new URLSearchParams(location.hash.slice(1))
+    const selected = screenOf(params.get('selected'))
     if (_selected !== selected) {
         renderSelected(selected)
     }
-    if (raw !== selected) {
-        history.replaceState(null, '', `#${selected}`)
+    const colors = colorsOf(params.get('colors'))
+    if (_colors !== colors) {
+        renderColors(colors)
+    }
+    const expected = getState({ selected: selected, colors: colors })
+    if (location.hash !== expected) {
+        history.replaceState(null, '', expected)
     }
 }
 
 window.addEventListener('hashchange', () => {
-    onHashChange(location.hash.slice(1))
+    onHashChange()
 })
 
 //
 
-renderColors(_colors)
-onHashChange(location.hash.slice(1))
+onHashChange()
