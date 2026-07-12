@@ -41,6 +41,7 @@ async function renderMainScreen(selected) {
   const res = await fetch(url)
   const text = await res.text()
   MainScreen.innerHTML = text
+  MainScreen.scrollTop = 0
 }
 
 //
