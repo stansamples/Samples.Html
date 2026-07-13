@@ -1,6 +1,7 @@
 :root {
   --colors-primary: #1e88e5ff;
   --colors-text: var(--colors-foreground);
+  --durations-animation: 250ms;
 }
 
 [data-colors="dark"] {
@@ -74,9 +75,16 @@ body {
   border: none;
   border-radius: 0;
   background-color: transparent;
-  scrollbar-width: auto;
+  scrollbar-width: none;
   scrollbar-color: #000000ff #00000000;
   box-sizing: border-box;
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+}
+
+.Box > * {
+  grid-area: 1 / 1;
 }
 
 .FlexBox {
@@ -85,7 +93,7 @@ body {
   border: none;
   border-radius: 0;
   background-color: transparent;
-  scrollbar-width: auto;
+  scrollbar-width: none;
   scrollbar-color: #000000ff #00000000;
   box-sizing: border-box;
   display: flex;
@@ -147,18 +155,40 @@ body {
   width: 256px;
 }
 
+.Scrim {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--durations-animation) ease;
+  background-color: #f00;
+}
+
+.MainScreen {
+  padding: 0 16px 0 calc(256px + 16px);
+}
+
 @media (max-width: 768px) {
   .OpenedSwitch {
     display: block;
   }
 
   .StartBar {
-    position: fixed;
     transform: translateX(-100%);
+    opacity: 0;
     background-color: var(--colors-background);
+    transition: transform var(--durations-animation) ease, opacity var(--durations-animation) ease;
   }
 
   .StartBar.opened {
     transform: translateX(0);
+    opacity: 1;
+  }
+
+  .Scrim.opened {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .MainScreen {
+    padding: 0 16px;
   }
 }

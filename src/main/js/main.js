@@ -15,6 +15,7 @@ let _opened = undefined
 
 const OpenedSwitch = document.getElementById('OpenedSwitch')
 const StartBar = document.getElementById('StartBar')
+const Scrim = document.getElementById('Scrim')
 const ColorsSwitch = document.getElementById('ColorsSwitch')
 const StartItems = document.getElementById('StartItems')
 const MainScreen = document.getElementById('MainScreen')
@@ -80,6 +81,7 @@ function renderOpened(opened) {
     _opened = opened
     OpenedSwitch.textContent = _opened === true ? 'close' : 'open'
     StartBar.classList.toggle('opened', _opened === true)
+    Scrim.classList.toggle('opened', _opened === true)
 }
 
 OpenedSwitch.addEventListener('click', () => {
