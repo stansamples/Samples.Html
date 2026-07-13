@@ -110,12 +110,12 @@ body {
 }
 
 .StartItems {
- padding: 8px 16px;
- flex-direction: column;
- min-height: 0;
- gap: 8px;
- overflow-y: auto;
- justify-content: flex-start;
+  padding: 8px 16px;
+  flex-direction: column;
+  min-height: 0;
+  gap: 8px;
+  overflow-y: auto;
+  justify-content: flex-start;
 }
 
 .StartItem {
