@@ -3,6 +3,8 @@
   --colors-text: var(--colors-foreground);
   --colors-scrim: #202020d0;
   --durations-animation: 250ms;
+  --paddings-border: 8px;
+  --width-border: 1px;
 }
 
 [data-colors="dark"] {
@@ -168,6 +170,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --paddings-border: 0;
+  }
+
   .OpenedSwitch {
     display: block;
   }
