@@ -130,7 +130,29 @@ body {
   cursor: auto;
 }
 
+.StartItemsSwitch {
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
 .ColorsSwitch {
   padding: 8px 16px;
   border-radius: 8px;
+}
+
+.StartBar {
+  width: 256px;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .StartBar {
+    position: fixed;
+    transform: translateX(-100%);
+    background-color: var(--colors-background);
+  }
+
+  .StartBar.opened {
+    transform: translateX(0);
+  }
 }

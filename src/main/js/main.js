@@ -11,7 +11,10 @@ const Colors = Object.freeze({
 
 let _selected = undefined
 let _colors = undefined
+let _opened = false
 
+const StartItemsSwitch = document.getElementById('StartItemsSwitch')
+const StartBar = document.getElementById('StartBar')
 const ColorsSwitch = document.getElementById('ColorsSwitch')
 const StartItems = document.getElementById('StartItems')
 const MainScreen = document.getElementById('MainScreen')
@@ -73,12 +76,28 @@ StartItems.addEventListener('click', (event) => {
 
 //
 
-function onStateChange({ selected = _selected, colors = _colors }, needsToPush = false) {
+function renderOpened(opened) {
+    _opened = opened
+    StartItemsSwitch.textContent = _opened === true ? 'close' : 'open'
+    StartBar.classList.toggle('opened', _opened === true)
+}
+
+StartItemsSwitch.addEventListener('click', () => {
+    const opened = _opened === true ? false : true
+    onStateChange({ opened: opened })
+})
+
+//
+
+function onStateChange({ selected = _selected, colors = _colors, opened = _opened }, needsToPush = false) {
     if (_selected !== selected) {
         renderSelected(selected)
     }
     if (_colors !== colors) {
         renderColors(colors)
+    }
+    if (_opened !== opened) {
+        renderOpened(opened)
     }
     const expected = getState({ selected: selected, colors: colors })
     if (location.hash !== expected) {
