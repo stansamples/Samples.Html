@@ -97,6 +97,7 @@ body {
 
 .Clickable {
   cursor: pointer;
+  user-select: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
