@@ -1,6 +1,7 @@
 :root {
   --colors-primary: #1e88e5ff;
   --colors-text: var(--colors-foreground);
+  --colors-scrim: #202020d0;
   --durations-animation: 250ms;
 }
 
@@ -159,7 +160,7 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--durations-animation) ease;
-  background-color: #f00;
+  background-color: var(--colors-scrim);
 }
 
 .MainScreen {
