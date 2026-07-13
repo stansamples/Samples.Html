@@ -89,6 +89,13 @@ OpenedSwitch.addEventListener('click', () => {
     onStateChange({ opened: opened })
 })
 
+Scrim.addEventListener('click', () => {
+    console.log('Scrim:click')
+    if (_opened === true) {
+        onStateChange({ opened: false })
+    }
+})
+
 //
 
 function onStateChange({ selected = _selected, colors = _colors, opened = _opened }, needsToPush = false) {
