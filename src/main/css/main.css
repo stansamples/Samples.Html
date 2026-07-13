@@ -45,6 +45,7 @@ html {
   border: none;
   border-radius: 0;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
   font-family: 'JetBrains Mono', monospace;
   font-size: 16px;
   font-weight: normal;
@@ -94,6 +95,20 @@ body {
   align-items: flex-start;
 }
 
+.Clickable {
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .Clickable:hover {
+    background-color: var(--colors-focused);
+  }
+}
+
+.Clickable:active {
+  background-color: var(--colors-pressed);
+}
+
 .StartItems {
  padding: 8px 16px;
  flex-direction: column;
@@ -105,16 +120,7 @@ body {
 
 .StartItem {
   padding: 8px 16px;
-  cursor: pointer;
   border-radius: 8px;
-}
-
-.StartItem:hover {
-  background-color: var(--colors-focused);
-}
-
-.StartItem:active {
-  background-color: var(--colors-pressed);
 }
 
 .StartItem.selected {
@@ -123,16 +129,7 @@ body {
   cursor: auto;
 }
 
-.Colors {
+.ColorsSwitch {
   padding: 8px 16px;
-  cursor: pointer;
   border-radius: 8px;
-}
-
-.Colors:hover {
-  background-color: var(--colors-focused);
-}
-
-.Colors:active {
-  background-color: var(--colors-pressed);
 }
