@@ -11,9 +11,9 @@ const Colors = Object.freeze({
 
 let _selected = undefined
 let _colors = undefined
-let _opened = false
+let _opened = undefined
 
-const StartItemsSwitch = document.getElementById('StartItemsSwitch')
+const OpenedSwitch = document.getElementById('OpenedSwitch')
 const StartBar = document.getElementById('StartBar')
 const ColorsSwitch = document.getElementById('ColorsSwitch')
 const StartItems = document.getElementById('StartItems')
@@ -70,7 +70,7 @@ StartItems.addEventListener('click', (event) => {
     const item = event.target.closest('.StartItem')
     if (!item) return
     if (_selected !== item.dataset.id) {
-        onStateChange({ selected: item.dataset.id }, true)
+        onStateChange({ selected: item.dataset.id, opened: false }, true)
     }
 })
 
@@ -78,11 +78,11 @@ StartItems.addEventListener('click', (event) => {
 
 function renderOpened(opened) {
     _opened = opened
-    StartItemsSwitch.textContent = _opened === true ? 'close' : 'open'
+    OpenedSwitch.textContent = _opened === true ? 'close' : 'open'
     StartBar.classList.toggle('opened', _opened === true)
 }
 
-StartItemsSwitch.addEventListener('click', () => {
+OpenedSwitch.addEventListener('click', () => {
     const opened = _opened === true ? false : true
     onStateChange({ opened: opened })
 })
@@ -109,15 +109,15 @@ function onStateChange({ selected = _selected, colors = _colors, opened = _opene
     }
 }
 
-function onPopState() {
+function onPopState(opened) {
     const params = new URLSearchParams(location.hash.slice(1))
     const selected = screenOf(params.get('selected'))
     const colors = colorsOf(params.get('colors'))
-    onStateChange({ selected: selected, colors: colors })
+    onStateChange({ selected: selected, colors: colors, opened: opened })
 }
 
 window.addEventListener('popstate', onPopState)
 
 //
 
-onPopState()
+onPopState(false)

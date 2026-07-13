@@ -93,6 +93,8 @@ body {
   width: fit-content;
   height: fit-content;
   align-items: flex-start;
+  flex-shrink: 0;
+  min-height: 0;
 }
 
 .Clickable {
@@ -130,9 +132,10 @@ body {
   cursor: auto;
 }
 
-.StartItemsSwitch {
+.OpenedSwitch {
   padding: 8px 16px;
   border-radius: 8px;
+  display: none;
 }
 
 .ColorsSwitch {
@@ -142,10 +145,13 @@ body {
 
 .StartBar {
   width: 256px;
-  flex-direction: column;
 }
 
 @media (max-width: 768px) {
+  .OpenedSwitch {
+    display: block;
+  }
+
   .StartBar {
     position: fixed;
     transform: translateX(-100%);

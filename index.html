@@ -8,33 +8,27 @@
     <meta name="version" content="0.0.1">
 </head>
 <body>
-<div class="FlexBox" style="width: 100%; height: 100%;">
-    <div id="StartBar" class="FlexBox StartBar" style="height: 100%;">
-        <div class="Box" style="width: 100%; height: 64px;"></div>
-        <div style="width: 100%; padding: 0 8px; box-sizing: border-box;">
-            <div style="width: 100%; height: 1px; background-color: var(--colors-border);"></div>
-        </div>
-        <div id="StartItems" class="FlexBox StartItems" style="width: 100%; flex: 1;">
-            <div data-id="foo" class="Box Clickable StartItem" style="width: 100%;">foo</div>
-            <div data-id="bar" class="Box Clickable StartItem" style="width: 100%;">bar</div>
-            <div data-id="baz" class="Box Clickable StartItem" style="width: 100%;">baz</div>
-        </div>
-        <div class="Box" style="width: 100%;"></div>
+<div class="FlexBox" style="width: 100%; height: 100%; flex-direction: column;">
+    <div id="TopBar" class="FlexBox" style="width: 100%; height: 64px; padding: 0 16px; align-items: center;">
+        <div id="OpenedSwitch" class="Box Clickable OpenedSwitch"></div>
+        <div class="Box" style="height: 100%; flex: 1;"></div>
+        <div id="ColorsSwitch" class="Box Clickable ColorsSwitch"></div>
     </div>
-    <div style="height: 100%; padding: 8px 0; box-sizing: border-box;">
-        <div style="width: 1px; height: 100%; background-color: var(--colors-border);"></div>
+    <div style="width: 100%; padding: 0 8px; box-sizing: border-box;">
+        <div style="width: 100%; height: 1px; background-color: var(--colors-border);"></div>
     </div>
-    <div class="FlexBox" style="height: 100%; flex: 1; flex-direction: column;">
-        <div class="FlexBox" style="width: 100%; height: 64px; padding: 0 16px; align-items: center;">
-            <div id="StartItemsSwitch" class="Box Clickable StartItemsSwitch">open</div>
-            <div class="Box" style="height: 100%; flex: 1;"></div>
-            <div id="ColorsSwitch" class="Box Clickable ColorsSwitch"></div>
-            <div class="Box" style="height: 100%;"></div>
+    <div class="FlexBox" style="width: 100%; flex: 1;">
+        <div id="StartBar" class="FlexBox StartBar" style="height: 100%;">
+            <div id="StartItems" class="FlexBox StartItems" style="height: 100%; flex: 1;">
+                <div data-id="foo" class="Box Clickable StartItem" style="width: 100%;">foo</div>
+                <div data-id="bar" class="Box Clickable StartItem" style="width: 100%;">bar</div>
+                <div data-id="baz" class="Box Clickable StartItem" style="width: 100%;">baz</div>
+            </div>
+            <div style="height: 100%; box-sizing: border-box;">
+                <div style="width: 1px; height: 100%; background-color: var(--colors-border);"></div>
+            </div>
         </div>
-        <div style="width: 100%; padding: 0 8px; box-sizing: border-box;">
-            <div style="width: 100%; height: 1px; background-color: var(--colors-border);"></div>
-        </div>
-        <div id="MainScreen" class="Box" style="width: 100%; padding: 0 16px; flex: 1; min-height: 0; overflow-y: auto;"></div>
+        <div id="MainScreen" class="Box" style="height: 100%; padding: 0 16px; flex: 1; min-height: 0; overflow-y: auto;"></div>
     </div>
 </div>
 <script src="./src/main/js/main.js"></script>
