@@ -90,7 +90,6 @@ OpenedSwitch.addEventListener('click', () => {
 })
 
 Scrim.addEventListener('click', () => {
-    console.log('Scrim:click')
     if (_opened === true) {
         onStateChange({ opened: false })
     }
@@ -125,7 +124,9 @@ function onPopState(opened) {
     onStateChange({ selected: selected, colors: colors, opened: opened })
 }
 
-window.addEventListener('popstate', onPopState)
+window.addEventListener('popstate', () => {
+    onPopState(false)
+})
 
 //
 
